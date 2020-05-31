@@ -1,0 +1,170 @@
+$`01_data/csv-thenewengl-10621972.csv`
+$`01_data/csv-thenewengl-10621972.csv`$tic
+elapsed 
+  23.32 
+
+$`01_data/csv-thenewengl-10621972.csv`$toc
+elapsed 
+   9458 
+
+$`01_data/csv-thenewengl-10621972.csv`$msg
+logical(0)
+
+
+$`01_data/csv-thenewengl-19451962.csv`
+$`01_data/csv-thenewengl-19451962.csv`$tic
+elapsed 
+9458.07 
+
+$`01_data/csv-thenewengl-19451962.csv`$toc
+elapsed 
+17141.9 
+
+$`01_data/csv-thenewengl-19451962.csv`$msg
+logical(0)
+
+
+$`01_data/csv-thenewengl-19731979.csv`
+$`01_data/csv-thenewengl-19731979.csv`$tic
+elapsed 
+17141.9 
+
+$`01_data/csv-thenewengl-19731979.csv`$toc
+ elapsed 
+26066.89 
+
+$`01_data/csv-thenewengl-19731979.csv`$msg
+logical(0)
+
+
+$`01_data/csv-thenewengl-19801987.csv`
+$`01_data/csv-thenewengl-19801987.csv`$tic
+ elapsed 
+26067.32 
+
+$`01_data/csv-thenewengl-19801987.csv`$toc
+ elapsed 
+36121.89 
+
+$`01_data/csv-thenewengl-19801987.csv`$msg
+logical(0)
+
+
+$`01_data/csv-thenewengl-19881995.csv`
+$`01_data/csv-thenewengl-19881995.csv`$tic
+ elapsed 
+36121.96 
+
+$`01_data/csv-thenewengl-19881995.csv`$toc
+ elapsed 
+45203.11 
+
+$`01_data/csv-thenewengl-19881995.csv`$msg
+logical(0)
+
+
+$`01_data/csv-thenewengl-19962002.csv`
+$`01_data/csv-thenewengl-19962002.csv`$tic
+ elapsed 
+45203.18 
+
+$`01_data/csv-thenewengl-19962002.csv`$toc
+ elapsed 
+52991.57 
+
+$`01_data/csv-thenewengl-19962002.csv`$msg
+logical(0)
+
+
+$`01_data/csv-thenewengl-20032008.csv`
+$`01_data/csv-thenewengl-20032008.csv`$tic
+ elapsed 
+52991.57 
+
+$`01_data/csv-thenewengl-20032008.csv`$toc
+ elapsed 
+61114.62 
+
+$`01_data/csv-thenewengl-20032008.csv`$msg
+logical(0)
+
+
+$`01_data/csv-thenewengl-20092014.csv`
+$`01_data/csv-thenewengl-20092014.csv`$tic
+ elapsed 
+61114.62 
+
+$`01_data/csv-thenewengl-20092014.csv`$toc
+ elapsed 
+63107.07 
+
+$`01_data/csv-thenewengl-20092014.csv`$msg
+logical(0)
+
+
+$`01_data/csv-thenewengl-20152020.csv`
+$`01_data/csv-thenewengl-20152020.csv`$tic
+ elapsed 
+63107.14 
+
+$`01_data/csv-thenewengl-20152020.csv`$toc
+ elapsed 
+72452.73 
+
+$`01_data/csv-thenewengl-20152020.csv`$msg
+logical(0)
+
+
+There were 50 or more warnings (use warnings() to see the first 50)
+> warnings()
+Warning messages:
+1: Failure in resolving '10.1056/NEJM194801222380403'. See error detail in results.
+2: Failure in resolving '10.1056/NEJM198104093041510'. See error detail in results.
+3: Failure in resolving '10.1056/NEJM199406233302503'. See error detail in results.
+4: Failure in resolving '10.1056/NEJM199009133231115'. See error detail in results.
+5: Failure in resolving '10.1056/NEJM199009133231129'. See error detail in results.
+6: Failure in resolving '10.1056/NEJM199009063231015'. See error detail in results.
+7: Failure in resolving '10.1056/NEJM199605233342117'. See error detail in results.
+8: Failure in resolving '10.1056/NEJMe078037'. See error detail in results.
+9: Failure in resolving '10.1056/NEJMe068099'. See error detail in results.
+10: Failure in resolving '10.1056/NEJMcp053024'. See error detail in results.
+11: Failure in resolving '10.1056/NEJMp048267'. See error detail in results.
+12: 10.1056/NEJMc1412123#SA1 agency not found - proceeding with 'crossref' ...
+13: 10.1056/NEJMc1410673#SA1 agency not found - proceeding with 'crossref' ...
+14: Failure in resolving '10.1056/NEJMc1404715'. See error detail in results.
+15: Failure in resolving '10.1056/NEJMc1406745'. See error detail in results.
+16: Failure in resolving '10.1056/NEJMc1406745'. See error detail in results.
+17: Failure in resolving '10.1056/NEJMc1406745'. See error detail in results.
+18: Failure in resolving '10.1056/NEJMc1406745'. See error detail in results.
+19: Failure in resolving '10.1056/NEJMc1406745'. See error detail in results.
+20: Failure in resolving '10.1056/NEJMcibr1404664'. See error detail in results.
+21: Failure in resolving '10.1056/NEJMhle1403384'. See error detail in results.
+22: Failure in resolving '10.1056/NEJMe1406870'. See error detail in results.
+23: Failure in resolving '10.1056/NEJMcpc1404140'. See error detail in results.
+24: Failure in resolving '10.1056/NEJMicm1309904'. See error detail in results.
+25: Failure in resolving '10.1056/NEJMcp1314291'. See error detail in results.
+26: Failure in resolving '10.1056/NEJMsa1311707'. See error detail in results.
+27: Failure in resolving '10.1056/NEJMoa1312890'. See error detail in results.
+28: Failure in resolving '10.1056/NEJMp1405709'. See error detail in results.
+29: Failure in resolving '10.1056/NEJMsr1406753'. See error detail in results.
+30: Failure in resolving '10.1056/NEJMicm1105786'. See error detail in results.
+31: Failure in resolving '10.1056/NEJMc1406664'. See error detail in results.
+32: Failure in resolving '10.1056/NEJMc1406664'. See error detail in results.
+33: Failure in resolving '10.1056/NEJMc1311039'. See error detail in results.
+34: Failure in resolving '10.1056/NEJMc1406274'. See error detail in results.
+35: Failure in resolving '10.1056/NEJMc1406274'. See error detail in results.
+36: Failure in resolving '10.1056/NEJMc1406274'. See error detail in results.
+37: Failure in resolving '10.1056/NEJMc1406009'. See error detail in results.
+38: Failure in resolving '10.1056/NEJMc1406009'. See error detail in results.
+39: Failure in resolving '10.1056/NEJMc1406009'. See error detail in results.
+40: Failure in resolving '10.1056/NEJMc1406009'. See error detail in results.
+41: Failure in resolving '10.1056/NEJMc1406009'. See error detail in results.
+42: Failure in resolving '10.1056/NEJMc1406276'. See error detail in results.
+43: Failure in resolving '10.1056/NEJMc1406276'. See error detail in results.
+44: Failure in resolving '10.1056/NEJMc1406276'. See error detail in results.
+45: Failure in resolving '10.1056/NEJMc1406276'. See error detail in results.
+46: Failure in resolving '10.1056/NEJMe1405766'. See error detail in results.
+47: Failure in resolving '10.1056/NEJMe1406410'. See error detail in results.
+48: Failure in resolving '10.1056/NEJMcpc1304163'. See error detail in results.
+49: Failure in resolving '10.1056/NEJMicm1314969'. See error detail in results.
+50: Failure in resolving '10.1056/NEJMct1215532'. See error detail in results.

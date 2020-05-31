@@ -1,25 +1,27 @@
+---
+output: github_document
+always_allow_html: true
+editor_options: 
+  chunk_output_type: console
+---
+
 
 ## Gender proportions in NEJM
 
-We collected data from all publications registered in pubmed, from the
-New England Journal of Medicine, from 1945 to 2020. (Raw data available
-at [01\_data]())
+We collected data from all publications registered in pubmed, from the New England Journal of Medicine, from 1945 to 2020. (Raw data available at [01_data]())
 
-We extracted the bibtex from each paper with a doi using the package
-[rcrossref](https://github.com/ropensci/rcrossref). We use the default
-setting since it has complete names for all authors. The code for this
-step can be found in [`02_r/extract_bib`]().
+We extracted the bibtex from each paper with a doi using the package [rcrossref](https://github.com/ropensci/rcrossref). We use the default setting since it has complete names for all authors. The code for this step can be found in [`02_r/extract_bib`]().
 
-Once we had every paper with the specific bibtex information, we
-followed the next steps to clean the data:
+Once we had every paper with the specific bibtex information, we followed the next steps to clean the data: 
 
-``` r
+
+```r
 library(tidyverse)
 ```
 
 #### Steps to import the data:
 
-``` r
+```r
 data_dir <- "01b_clean_data"
 
 rda_files <- fs::dir_ls(data_dir, regexp = "\\.Rda$")
@@ -37,98 +39,56 @@ data %>%
 ```
 
 <table class="table table-hover table-condensed table-responsive" style="font-size: 12px; width: auto !important; margin-left: auto; margin-right: auto;">
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-DOI
-
-</th>
-
-<th style="text-align:left;">
-
-bib
-
-</th>
-
-</tr>
-
-</thead>
-
+ <thead>
+  <tr>
+   <th style="text-align:left;"> DOI </th>
+   <th style="text-align:left;"> bib </th>
+  </tr>
+ </thead>
 <tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-10.1056/NEJM198209023071008
-
-</td>
-
-<td style="text-align:left;">
-
-@article{Cabot\_1982, doi = {10.1056/nejm198209023071008}, url =
-{<https://doi.org/10.1056%2Fnejm198209023071008>}, year = 1982, month =
-{sep}, publisher = {Massachusetts Medical Society}, volume = {307},
-number = {10}, pages = {605–614}, author = {Richard C. Cabot and Robert
-E. Scully and Eugene J. Mark and Betty U. McNeely and L. Christine
-Oliver and Eugene J. Mark}, title = {Case 35-1982}, journal = {New
-England Journal of Medicine} }
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-10.1056/NEJM196507152730306
-
-</td>
-
-<td style="text-align:left;">
-
-@article{Cathcart\_1965, doi = {10.1056/nejm196507152730306}, url =
-{<https://doi.org/10.1056%2Fnejm196507152730306>}, year = 1965, month =
-{jul}, publisher = {Massachusetts Medical Society}, volume = {273},
-number = {3}, pages = {143–146}, author = {Edgar S. Cathcart and Francis
-R. Comerford and Alan S. Cohen}, title = {Immunologic Studies on a
-Protein Extracted from Human Secondary Amyloid}, journal = {New England
-Journal of Medicine} }
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-10.1056/NEJMoa1314583
-
-</td>
-
-<td style="text-align:left;">
-
-list(doi = “10.1056/NEJMoa1314583”, error = “Error in
-curl::curl\_fetch\_memory(x\(url\)url, handle = x\(url\)handle) : Failed
-to connect to api.crossref.org port 443: Host unreachable”)
-
-</td>
-
-</tr>
-
+  <tr>
+   <td style="text-align:left;"> 10.1056/NEJM198209023071008 </td>
+   <td style="text-align:left;"> @article{Cabot_1982,
+	doi = {10.1056/nejm198209023071008},
+	url = {https://doi.org/10.1056%2Fnejm198209023071008},
+	year = 1982,
+	month = {sep},
+	publisher = {Massachusetts Medical Society},
+	volume = {307},
+	number = {10},
+	pages = {605--614},
+	author = {Richard C. Cabot and Robert E. Scully and Eugene J. Mark and Betty U. McNeely and L. Christine Oliver and Eugene J. Mark},
+	title = {Case 35-1982},
+	journal = {New England Journal of Medicine}
+} </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 10.1056/NEJM196507152730306 </td>
+   <td style="text-align:left;"> @article{Cathcart_1965,
+	doi = {10.1056/nejm196507152730306},
+	url = {https://doi.org/10.1056%2Fnejm196507152730306},
+	year = 1965,
+	month = {jul},
+	publisher = {Massachusetts Medical Society},
+	volume = {273},
+	number = {3},
+	pages = {143--146},
+	author = {Edgar S. Cathcart and Francis R. Comerford and Alan S. Cohen},
+	title = {Immunologic Studies on a Protein Extracted from Human Secondary Amyloid},
+	journal = {New England Journal of Medicine}
+} </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 10.1056/NEJMoa1314583 </td>
+   <td style="text-align:left;"> list(doi = "10.1056/NEJMoa1314583", error = "Error in curl::curl_fetch_memory(x$url$url, handle = x$url$handle) : \n  Failed to connect to api.crossref.org port 443: Host unreachable\n") </td>
+  </tr>
 </tbody>
-
 </table>
 
-#### Extract authors name in multiple columns
+#### Extract authors name in multiple columns 
 
-``` r
+
+```r
 # Create an author variable from the bibtex
 data <- data %>% mutate(
   author = str_extract(bib, "(author = \\{)(.)+"),
@@ -177,109 +137,37 @@ filter(DOI == "10.1056/nejm194511152332004") %>%
 ```
 
 <table class="table table-hover table-condensed table-responsive" style="font-size: 12px; width: auto !important; margin-left: auto; margin-right: auto;">
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-author\_position
-
-</th>
-
-<th style="text-align:left;">
-
-author\_name
-
-</th>
-
-<th style="text-align:left;">
-
-first\_name
-
-</th>
-
-<th style="text-align:left;">
-
-last\_name
-
-</th>
-
-</tr>
-
-</thead>
-
+ <thead>
+  <tr>
+   <th style="text-align:left;"> author_position </th>
+   <th style="text-align:left;"> author_name </th>
+   <th style="text-align:left;"> first_name </th>
+   <th style="text-align:left;"> last_name </th>
+  </tr>
+ </thead>
 <tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-1
-
-</td>
-
-<td style="text-align:left;">
-
-Elliot L. Sagall
-
-</td>
-
-<td style="text-align:left;">
-
-Elliot
-
-</td>
-
-<td style="text-align:left;">
-
-Sagall
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-2
-
-</td>
-
-<td style="text-align:left;">
-
-Albert Dorfman
-
-</td>
-
-<td style="text-align:left;">
-
-Albert
-
-</td>
-
-<td style="text-align:left;">
-
-Dorfman
-
-</td>
-
-</tr>
-
+  <tr>
+   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:left;"> Elliot L. Sagall </td>
+   <td style="text-align:left;"> Elliot </td>
+   <td style="text-align:left;"> Sagall </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2 </td>
+   <td style="text-align:left;"> Albert Dorfman </td>
+   <td style="text-align:left;"> Albert </td>
+   <td style="text-align:left;"> Dorfman </td>
+  </tr>
 </tbody>
-
 </table>
 
 #### Find gender for each author
 
-I use the [`gender` package](https://github.com/ropensci/gender), by
-Mullen, L. (2019). gender: Predict Gender from Names Using Historical
-Data. R package version 0.5.3, and the U.S. Social Security
-Administration baby names database.
+I use the [`gender` package](https://github.com/ropensci/gender), by Mullen, L. (2019). gender: Predict Gender from Names Using Historical Data. R package version 0.5.3, 
+and the U.S. Social Security Administration baby names database.
 
-``` r
+
+```r
 names <- data_filtered %>% count(first_name) %>% pull(first_name)
 
 gender <- gender::gender(names, method = "ssa")
@@ -297,187 +185,63 @@ data_filtered %>%
 ```
 
 <table class="table table-hover table-condensed table-responsive" style="font-size: 12px; width: auto !important; margin-left: auto; margin-right: auto;">
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-first\_name
-
-</th>
-
-<th style="text-align:left;">
-
-gender
-
-</th>
-
-</tr>
-
-</thead>
-
+ <thead>
+  <tr>
+   <th style="text-align:left;"> first_name </th>
+   <th style="text-align:left;"> gender </th>
+  </tr>
+ </thead>
 <tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-Chantha
-
-</td>
-
-<td style="text-align:left;">
-
-female
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-Sherry
-
-</td>
-
-<td style="text-align:left;">
-
-female
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-Jean
-
-</td>
-
-<td style="text-align:left;">
-
-female
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-Luc
-
-</td>
-
-<td style="text-align:left;">
-
-male
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-Edwin
-
-</td>
-
-<td style="text-align:left;">
-
-male
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-Charles
-
-</td>
-
-<td style="text-align:left;">
-
-male
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-Joost
-
-</td>
-
-<td style="text-align:left;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-Dragos
-
-</td>
-
-<td style="text-align:left;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-Meletios
-
-</td>
-
-<td style="text-align:left;">
-
-NA
-
-</td>
-
-</tr>
-
+  <tr>
+   <td style="text-align:left;"> Chantha </td>
+   <td style="text-align:left;"> female </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Sherry </td>
+   <td style="text-align:left;"> female </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Jean </td>
+   <td style="text-align:left;"> female </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Luc </td>
+   <td style="text-align:left;"> male </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Edwin </td>
+   <td style="text-align:left;"> male </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Charles </td>
+   <td style="text-align:left;"> male </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Joost </td>
+   <td style="text-align:left;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Dragos </td>
+   <td style="text-align:left;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Meletios </td>
+   <td style="text-align:left;"> NA </td>
+  </tr>
 </tbody>
-
 </table>
 
 ## Plot
 
-Insight on the number of papers per year, and number of missing papers
-with missing DOI
+Insight on the number of papers per year, and number of missing papers with missing DOI
 
 ![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->![](README_files/figure-gfm/unnamed-chunk-5-2.png)<!-- -->
 
 ## Gender proportion over time
 
-``` r
+
+
+```r
 count_gender <- data_filtered %>% 
   group_by(`Publication Year`) %>% 
   count(gender) %>% 
@@ -501,7 +265,8 @@ count_gender %>%
 
 ## First author´s gender proportion over time
 
-``` r
+
+```r
 count_gender_first <- data_filtered %>% 
   filter(author_position == 1) %>% 
   group_by(`Publication Year`) %>% 
@@ -526,7 +291,8 @@ count_gender_first %>%
 
 ## Single author´s proportion over time
 
-``` r
+
+```r
 count_single <- data_filtered %>% 
   group_by(DOI) %>% 
   mutate(total_authors = last(author_position)) %>%
@@ -552,9 +318,10 @@ count_single %>%
 
 ![](README_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
-## Last author’s gender proportion
+## Last author's gender proportion 
 
-``` r
+
+```r
 count_last<- data_filtered %>% 
   group_by(DOI) %>% 
   filter(author_position == last(author_position)) %>%
@@ -578,3 +345,4 @@ count_last %>%
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+
