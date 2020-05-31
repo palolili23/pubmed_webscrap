@@ -113,3 +113,20 @@ count_gender_first %>%
     title = "NEJM, first author's gender proportion",
     y = "Proportion (%)%",
     fill = "Gender")
+
+count_single <- data_filtered %>% 
+  group_by(DOI) %>% 
+  mutate(total_authors = last(author_position)) %>%
+  ungroup() %>% 
+  filter(total_authors == 1) %>% 
+  group_by(`Publication Year`) %>% 
+  count(gender) %>% 
+  mutate(prop = round(100*n/sum(n), 2))
+
+count_last<- data_filtered %>% 
+  group_by(DOI) %>% 
+  filter(author_position == last(author_position)) %>%
+  ungroup() %>% 
+  group_by(`Publication Year`) %>% 
+  count(gender) %>% 
+  mutate(prop = round(100*n/sum(n), 2))
