@@ -491,10 +491,13 @@ with missing DOI
 count_gender <- data_filtered %>% 
   group_by(`Publication Year`) %>% 
   count(gender) %>% 
-  mutate(prop = round(100*n/sum(n), 2))
+  mutate(prop = round(100*n/sum(n), 2)) %>% 
+  ungroup()
 
 count_gender %>% 
   mutate(
+    `Publication Year` = as_factor(`Publication Year`),
+    gender = ifelse(is.na(gender), "unknown", gender), 
     gender = ifelse(is.na(gender), "unknown", gender), 
     gender = str_to_title(gender)) %>% 
   ggplot(aes(`Publication Year`, prop, fill = gender)) +
@@ -504,7 +507,10 @@ count_gender %>%
   labs(
     title = "NEJM, author's gender proportion",
     y = "Proportion (%)%",
-    fill = "Gender")
+    fill = "Gender") +
+    scale_x_discrete(
+    breaks=c("1945", "1960", "1980", "2000", "2020")
+  )
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
@@ -516,10 +522,12 @@ count_gender_first <- data_filtered %>%
   filter(author_position == 1) %>% 
   group_by(`Publication Year`) %>% 
   count(gender) %>% 
-  mutate(prop = round(100*n/sum(n), 2))
+  mutate(prop = round(100*n/sum(n), 2)) %>% 
+  ungroup()
 
 count_gender_first %>% 
   mutate(
+    `Publication Year` = as_factor(`Publication Year`),
     gender = ifelse(is.na(gender), "unknown", gender), 
     gender = str_to_title(gender)) %>% 
   ggplot(aes(`Publication Year`, prop, fill = gender)) +
@@ -529,7 +537,10 @@ count_gender_first %>%
   labs(
     title = "NEJM, first author's gender proportion",
     y = "Proportion (%)%",
-    fill = "Gender")
+    fill = "Gender") +
+    scale_x_discrete(
+    breaks=c("1945", "1960", "1980", "2000", "2020")
+  )
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
@@ -544,10 +555,12 @@ count_single <- data_filtered %>%
   filter(total_authors == 1) %>% 
   group_by(`Publication Year`) %>% 
   count(gender) %>% 
-  mutate(prop = round(100*n/sum(n), 2))
+  mutate(prop = round(100*n/sum(n), 2)) %>% 
+  ungroup()
 
 count_single %>% 
   mutate(
+    `Publication Year` = as_factor(`Publication Year`),
     gender = ifelse(is.na(gender), "unknown", gender), 
     gender = str_to_title(gender)) %>% 
   ggplot(aes(`Publication Year`, prop, fill = gender)) +
@@ -557,7 +570,10 @@ count_single %>%
   labs(
     title = "NEJM, Single author's gender proportion",
     y = "Proportion (%)%",
-    fill = "Gender")
+    fill = "Gender") +
+    scale_x_discrete(
+    breaks=c("1945", "1960", "1980", "2000", "2020")
+  )
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
@@ -571,10 +587,12 @@ count_last<- data_filtered %>%
   ungroup() %>% 
   group_by(`Publication Year`) %>% 
   count(gender) %>% 
-  mutate(prop = round(100*n/sum(n), 2))
+  mutate(prop = round(100*n/sum(n), 2)) %>% 
+  ungroup()
 
 count_last %>% 
   mutate(
+    `Publication Year` = as_factor(`Publication Year`),
     gender = ifelse(is.na(gender), "unknown", gender), 
     gender = str_to_title(gender)) %>% 
   ggplot(aes(`Publication Year`, prop, fill = gender)) +
@@ -584,7 +602,10 @@ count_last %>%
   labs(
     title = "NEJM, Last author's gender proportion",
     y = "Proportion (%)%",
-    fill = "Gender")
+    fill = "Gender") +
+    scale_x_discrete(
+    breaks=c("1945", "1960", "1980", "2000", "2020")
+  )
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
