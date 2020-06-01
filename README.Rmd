@@ -19,11 +19,11 @@ set.seed(876)
 ```
 ## Gender proportions in NEJM
 
-We collected data from all publications registered in pubmed, from the New England Journal of Medicine, from 1945 to 2020. (Raw data available at [01_data]())
+Data was collected from all publications registered in pubmed, from the New England Journal of Medicine, from 1945 to 2020. (Raw data available at [01_data]())
 
-We extracted the bibtex from each paper with a doi using the package [rcrossref](https://github.com/ropensci/rcrossref). We use the default setting since it has complete names for all authors. The code for this step can be found in [`02_r/extract_bib`]().
+I extracted the bibtex from each paper with a doi using the package [rcrossref](https://github.com/ropensci/rcrossref). The default setting was used since it has complete names for all authors. The code for this step can be found in [`02_r/extract_bib`](https://github.com/palolili23/pubmed_webscrap/blob/master/02_r/extract_bib.R).
 
-Once we had every paper with the specific bibtex information, we followed the next steps to clean the data: 
+Once every paper with the specific bibtex information, these are the next steps to clean the data: 
 
 ```{r}
 library(tidyverse)
@@ -49,7 +49,7 @@ data %>%
 
 ```
 
-#### Extract authors name in multiple columns 
+#### Extract authors name and make as many rows as authors, per paper
 
 ```{r}
 # Create an author variable from the bibtex

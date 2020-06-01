@@ -1,17 +1,18 @@
 
 ## Gender proportions in NEJM
 
-We collected data from all publications registered in pubmed, from the
+Data was collected from all publications registered in pubmed, from the
 New England Journal of Medicine, from 1945 to 2020. (Raw data available
 at [01\_data]())
 
-We extracted the bibtex from each paper with a doi using the package
-[rcrossref](https://github.com/ropensci/rcrossref). We use the default
-setting since it has complete names for all authors. The code for this
-step can be found in [`02_r/extract_bib`]().
+I extracted the bibtex from each paper with a doi using the package
+[rcrossref](https://github.com/ropensci/rcrossref). The default setting
+was used since it has complete names for all authors. The code for this
+step can be found in
+[`02_r/extract_bib`](https://github.com/palolili23/pubmed_webscrap/blob/master/02_r/extract_bib.R).
 
-Once we had every paper with the specific bibtex information, we
-followed the next steps to clean the data:
+Once every paper with the specific bibtex information, these are the
+next steps to clean the data:
 
 ``` r
 library(tidyverse)
@@ -114,9 +115,18 @@ Journal of Medicine} }
 
 <td style="text-align:left;">
 
-list(doi = “10.1056/NEJMoa1314583”, error = “Error in
-curl::curl\_fetch\_memory(x\(url\)url, handle = x\(url\)handle) : Failed
-to connect to api.crossref.org port 443: Host unreachable”)
+@article{Gopal\_2014, doi = {10.1056/nejmoa1314583}, url =
+{<https://doi.org/10.1056%2Fnejmoa1314583>}, year = 2014, month = {mar},
+publisher = {Massachusetts Medical Society}, volume = {370}, number =
+{11}, pages = {1008–1018}, author = {Ajay K. Gopal and Brad S. Kahl and
+Sven de Vos and Nina D. Wagner-Johnston and Stephen J. Schuster and
+Wojciech J. Jurczak and Ian W. Flinn and Christopher R. Flowers and
+Peter Martin and Andreas Viardot and Kristie A. Blum and Andre H. Goy
+and Andrew J. Davies and Pier Luigi Zinzani and Martin Dreyling and Dave
+Johnson and Langdon L. Miller and Leanne Holes and Daniel Li and Roger
+D. Dansey and Wayne R. Godfrey and Gilles A. Salles}, title =
+{{PI}3K\(\updelta\) Inhibition by Idelalisib in Patients with Relapsed
+Indolent Lymphoma}, journal = {New England Journal of Medicine} }
 
 </td>
 
@@ -126,7 +136,7 @@ to connect to api.crossref.org port 443: Host unreachable”)
 
 </table>
 
-#### Extract authors name in multiple columns
+#### Extract authors name and make as many rows as authors, per paper
 
 ``` r
 # Create an author variable from the bibtex
@@ -340,7 +350,7 @@ female
 
 <td style="text-align:left;">
 
-Sherry
+Saundra
 
 </td>
 
@@ -436,7 +446,7 @@ NA
 
 <td style="text-align:left;">
 
-Dragos
+Gultekin
 
 </td>
 
@@ -452,7 +462,7 @@ NA
 
 <td style="text-align:left;">
 
-Meletios
+Beng
 
 </td>
 
