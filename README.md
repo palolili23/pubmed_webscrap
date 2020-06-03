@@ -1,6 +1,10 @@
 
 ## Gender proportions in NEJM
 
+The following analysis was inspired by the work of Megan Frederickson,
+“Covid-19’s gendered impact on academia productivity” available
+[here](https://github.com/drfreder/pandemic-pub-bias/blob/master/README.md).
+
 Data was collected from all publications registered in pubmed, from the
 New England Journal of Medicine, from 1945 to 2020. (Raw data available
 at

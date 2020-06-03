@@ -21,6 +21,8 @@ set.seed(876)
 ```
 ## Gender proportions in NEJM
 
+The following analysis was inspired by the work of Megan Frederickson, "Covid-19's gendered impact on academia productivity" available [here](https://github.com/drfreder/pandemic-pub-bias/blob/master/README.md).
+
 Data was collected from all publications registered in pubmed, from the New England Journal of Medicine, from 1945 to 2020. (Raw data available at [01_data](https://github.com/palolili23/pubmed_webscrap/tree/master/01_data))
 
 Since all publications only had first name initials, I used the package [rcrossref](https://github.com/ropensci/rcrossref), function `cr_cn`, which gets citation in various formats from CrossRef and only requires the DOI.
