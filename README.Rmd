@@ -21,11 +21,12 @@ set.seed(876)
 ```
 ## Gender proportions in NEJM
 
-Data was collected from all publications registered in pubmed, from the New England Journal of Medicine, from 1945 to 2020. (Raw data available at [01_data]())
+Data was collected from all publications registered in pubmed, from the New England Journal of Medicine, from 1945 to 2020. (Raw data available at [01_data](https://github.com/palolili23/pubmed_webscrap/tree/master/01_data))
 
-I extracted the bibtex from each paper with a doi using the package [rcrossref](https://github.com/ropensci/rcrossref). The default setting was used since it has complete names for all authors. The code for this step can be found in [`02_r/extract_bib`](https://github.com/palolili23/pubmed_webscrap/blob/master/02_r/extract_bib.R).
+Since all publications only had first name initials, I used the package [rcrossref](https://github.com/ropensci/rcrossref), function `cr_cn`, which gets citation in various formats from CrossRef and only requires the DOI.
+Before pulling the citations, I [registered for the Polite Pool](https://github.com/ropensci/rcrossref#register-for-the-polite-pool), which means setting my email account in the Renviron. I used the `cr_cn` with the default setting, which pulls article data in [bibtex](https://en.wikipedia.org/wiki/BibTeX) format, which has complete names for all authors. The code for this step can be found in [`02_r/extract_bib`](https://github.com/palolili23/pubmed_webscrap/blob/master/02_r/extract_bib.R). I saved the new dataframes with the bibtex data as .Rda and can be found at [01b_clean_data](https://github.com/palolili23/pubmed_webscrap/tree/master/01b_clean_data). 
 
-Once every paper with the specific bibtex information, these are the next steps to clean the data: 
+I then followed the next steps to clean the data: 
 
 ```{r}
 library(tidyverse)
@@ -61,8 +62,8 @@ data <- data %>% mutate(
   author = str_remove(author, "\\},")
 )
 
-## Separate authors into multiple columns
-## Create as many rows as authors for each paper
+## Separate authors into multiple columns using the split_into_multiple function. 
+## Create as many rows as authors for each paper using pivot_longer
 
 split_into_multiple <- function(column, pattern = ", ", into_prefix){
   cols <- str_split_fixed(column, pattern, n = Inf)
@@ -83,8 +84,8 @@ data_authors <- data %>%
     names_prefix = "author_") %>% 
   drop_na(author_name)
 
-# Some authors only have initials, these will be excluded
 
+# Some authors only have initials instead of complete first names, these will be excluded
 # Separate first and last name
 
 data_authors <- data_authors %>% 
@@ -103,8 +104,7 @@ filter(DOI == "10.1056/nejm194511152332004") %>%
 
 #### Find gender for each author
 
-I use the [`gender` package](https://github.com/ropensci/gender), by Mullen, L. (2019). gender: Predict Gender from Names Using Historical Data. R package version 0.5.3, 
-and the U.S. Social Security Administration baby names database.
+To identify the gender of each author, I use the [`gender` package](https://github.com/ropensci/gender), by Mullen, L. (2019). gender: Predict Gender from Names Using Historical Data. R package version 0.5.3 and the U.S. Social Security Administration baby names database.
 
 ```{r}
 names <- data_filtered %>% count(first_name) %>% pull(first_name)
