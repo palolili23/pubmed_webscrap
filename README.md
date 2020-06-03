@@ -3,16 +3,26 @@
 
 Data was collected from all publications registered in pubmed, from the
 New England Journal of Medicine, from 1945 to 2020. (Raw data available
-at [01\_data]())
+at
+[01\_data](https://github.com/palolili23/pubmed_webscrap/tree/master/01_data))
 
-I extracted the bibtex from each paper with a doi using the package
-[rcrossref](https://github.com/ropensci/rcrossref). The default setting
-was used since it has complete names for all authors. The code for this
-step can be found in
+Since all publications only had first name initials, I used the package
+[rcrossref](https://github.com/ropensci/rcrossref), function `cr_cn`,
+which gets citation in various formats from CrossRef and only requires
+the DOI. Before pulling the citations, I [registered for the Polite
+Pool](https://github.com/ropensci/rcrossref#register-for-the-polite-pool)
+as good practices, and requires setting my email account in the
+Renviron. I used the `cr_cn` with the default setting, which pulls
+article data in [bibtex](https://en.wikipedia.org/wiki/BibTeX) format,
+which has complete names for all authors. The code for this step can be
+found in
 [`02_r/extract_bib`](https://github.com/palolili23/pubmed_webscrap/blob/master/02_r/extract_bib.R).
+I did it in batches of \~10000 and saved the new dataframes with the
+bibtex data as .Rda, they can be found at
+[01b\_clean\_data](https://github.com/palolili23/pubmed_webscrap/tree/master/01b_clean_data).
 
-Once every paper with the specific bibtex information, these are the
-next steps to clean the data:
+Once all papers had their bibtex information, I followed the next steps
+to clean the data:
 
 ``` r
 library(tidyverse)
@@ -146,8 +156,8 @@ data <- data %>% mutate(
   author = str_remove(author, "\\},")
 )
 
-## Separate authors into multiple columns
-## Create as many rows as authors for each paper
+## Separate authors into multiple columns using the split_into_multiple function. 
+## Create as many rows as authors for each paper using pivot_longer
 
 split_into_multiple <- function(column, pattern = ", ", into_prefix){
   cols <- str_split_fixed(column, pattern, n = Inf)
@@ -168,8 +178,8 @@ data_authors <- data %>%
     names_prefix = "author_") %>% 
   drop_na(author_name)
 
-# Some authors only have initials, these will be excluded
 
+# Some authors only have initials instead of complete first names, these will be excluded
 # Separate first and last name
 
 data_authors <- data_authors %>% 
@@ -284,10 +294,25 @@ Dorfman
 
 #### Find gender for each author
 
-I use the [`gender` package](https://github.com/ropensci/gender), by
-Mullen, L. (2019). gender: Predict Gender from Names Using Historical
-Data. R package version 0.5.3, and the U.S. Social Security
-Administration baby names database.
+To identify the gender of each author, I use the [`gender`
+package](https://github.com/ropensci/gender), by Mullen, L. (2019).
+gender: Predict Gender from Names Using Historical Data. R package
+version 0.5.3 and the U.S. Social Security Administration baby names
+database. To use the `gender` function, the package asks to download the
+`genderdata` package, but installation can be tricky as discussed in
+this [post](github.com/ropensci/drat/issues/6). I downloaded the package
+using `devtools::install_github("ropensci/genderdata")` command.
+
+*Considerations*: This package attempts to infer gender (or more
+precisely, sex assigned at birth) based on first names using historical
+data. This method has many limitations as discussed
+[here](https://github.com/ropensci/gender#guidelines-and-warnings),
+which include its reliance of data created by the state and its
+inability to see beyond the state-imposed gender binary and is meant to
+be used for studying populations in the aggregate. This method is a
+rough approach and can missclassify gender or exclude individual
+authors, but it can give a picture of the gender bias within the large
+dataset.
 
 ``` r
 names <- data_filtered %>% count(first_name) %>% pull(first_name)
@@ -485,6 +510,18 @@ with missing DOI
 
 ![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->![](README_files/figure-gfm/unnamed-chunk-5-2.png)<!-- -->
 
+For the following plots I will make slight changes to the gender
+variable:
+
+``` r
+data_filtered <- data_filtered %>% 
+  mutate(
+    `Publication Year` = as_factor(`Publication Year`),
+    gender = ifelse(is.na(gender), "unknown", gender), 
+    gender = ifelse(is.na(gender), "unknown", gender), 
+    gender = str_to_title(gender)) 
+```
+
 ## Gender proportion over time
 
 ``` r
@@ -494,26 +531,19 @@ count_gender <- data_filtered %>%
   mutate(prop = round(100*n/sum(n), 2)) %>% 
   ungroup()
 
-count_gender %>% 
-  mutate(
-    `Publication Year` = as_factor(`Publication Year`),
-    gender = ifelse(is.na(gender), "unknown", gender), 
-    gender = ifelse(is.na(gender), "unknown", gender), 
-    gender = str_to_title(gender)) %>% 
+count_gender %>%
   ggplot(aes(`Publication Year`, prop, fill = gender)) +
   geom_col() +
-  scale_fill_manual(values = c("#A8E6CE", "#DCEDC2", "#FFD3B5" )) +
+  scale_fill_manual(values = c("#FFC857", "#BDD9BF", "#929084")) +
   theme_minimal() +
-  labs(
-    title = "NEJM, author's gender proportion",
-    y = "Proportion (%)%",
-    fill = "Gender") +
-    scale_x_discrete(
-    breaks=c("1945", "1960", "1980", "2000", "2020")
-  )
+  labs(title = "NEJM, author's gender proportion",
+     y = "Proportion (%)%",
+     fill = "Gender") +
+  scale_x_discrete(breaks = c("1945", "1960", "1980", "2000", "2020")) +
+    theme(legend.position = "bottom")
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
 
 ## First author´s gender proportion over time
 
@@ -526,24 +556,20 @@ count_gender_first <- data_filtered %>%
   ungroup()
 
 count_gender_first %>% 
-  mutate(
-    `Publication Year` = as_factor(`Publication Year`),
-    gender = ifelse(is.na(gender), "unknown", gender), 
-    gender = str_to_title(gender)) %>% 
   ggplot(aes(`Publication Year`, prop, fill = gender)) +
   geom_col() +
-  scale_fill_manual(values = c("#A8E6CE", "#DCEDC2", "#FFD3B5" )) +
+  scale_fill_manual(values = c("#FFC857", "#BDD9BF", "#929084")) +
   theme_minimal() +
   labs(
     title = "NEJM, first author's gender proportion",
     y = "Proportion (%)%",
     fill = "Gender") +
     scale_x_discrete(
-    breaks=c("1945", "1960", "1980", "2000", "2020")
-  )
+    breaks=c("1945", "1960", "1980", "2000", "2020")) +
+    theme(legend.position = "bottom")
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
 ## Single author´s proportion over time
 
@@ -559,13 +585,9 @@ count_single <- data_filtered %>%
   ungroup()
 
 count_single %>% 
-  mutate(
-    `Publication Year` = as_factor(`Publication Year`),
-    gender = ifelse(is.na(gender), "unknown", gender), 
-    gender = str_to_title(gender)) %>% 
   ggplot(aes(`Publication Year`, prop, fill = gender)) +
   geom_col() +
-  scale_fill_manual(values = c("#A8E6CE", "#DCEDC2", "#FFD3B5" )) +
+  scale_fill_manual(values = c("#FFC857", "#BDD9BF", "#929084")) +
   theme_minimal() +
   labs(
     title = "NEJM, Single author's gender proportion",
@@ -573,10 +595,11 @@ count_single %>%
     fill = "Gender") +
     scale_x_discrete(
     breaks=c("1945", "1960", "1980", "2000", "2020")
-  )
+  ) +
+    theme(legend.position = "bottom")
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
 
 ## Last author’s gender proportion
 
@@ -591,13 +614,9 @@ count_last<- data_filtered %>%
   ungroup()
 
 count_last %>% 
-  mutate(
-    `Publication Year` = as_factor(`Publication Year`),
-    gender = ifelse(is.na(gender), "unknown", gender), 
-    gender = str_to_title(gender)) %>% 
   ggplot(aes(`Publication Year`, prop, fill = gender)) +
   geom_col() +
-  scale_fill_manual(values = c("#A8E6CE", "#DCEDC2", "#FFD3B5" )) +
+  scale_fill_manual(values = c("#FFC857", "#BDD9BF", "#929084")) +
   theme_minimal() +
   labs(
     title = "NEJM, Last author's gender proportion",
@@ -605,7 +624,8 @@ count_last %>%
     fill = "Gender") +
     scale_x_discrete(
     breaks=c("1945", "1960", "1980", "2000", "2020")
-  )
+  ) +
+    theme(legend.position = "bottom")
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
