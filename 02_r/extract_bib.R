@@ -3,7 +3,7 @@ library(rcrossref)
 library(tictoc)
 
 ## Import data
-data_dir <- "01_data"
+data_dir <- "01_data/bmj"
 
 csv_files <- fs::dir_ls(data_dir)
 
@@ -36,7 +36,8 @@ data %>%
   ungroup() %>% 
   ggplot(aes(`Publication Year`, n, color = `is.na(DOI)`)) +
   geom_line() +
-  theme_minimal()
+  theme_minimal() +
+  theme(legend.position = "bottom")
 
 
 data_bib <- data %>% 
@@ -53,13 +54,14 @@ extract_bib <-
     dt <- dt %>% 
       distinct(PMID, .keep_all = TRUE)
     
-    dt <- dt %>% filter(!is.na(DOI))
+    dt <- dt %>% filter(!is.na(DOI)) %>% 
+      sample_n(2)
     
     dt <- dt %>% 
       mutate(bib = cr_cn(DOI))
 
     file_name <- as.character(data)
-    file_name <- str_replace(file_name, "01_data", "01b_clean_data")
+    file_name <- str_replace(file_name, "01_data/bmj", "01b_clean_data")
     file_name <- str_replace(file_name, ".csv$", ".Rda")
     rio::export(dt, file_name)
     toc()
