@@ -1,0 +1,112 @@
+---
+title: "NEJM April-May gender rates over the last 20 years"
+output: html_document
+fig_width: 15
+fig_height: 8 
+always_allow_html: true
+editor_options: 
+  chunk_output_type: console
+---
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(lubridate)
+
+year2020 <- rio::import(here::here("01b_clean_data", "data_filtered_nejm.Rda")) %>% 
+  filter(str_detect(`Publication Year`, "20(.)(.)")) %>% 
+  rename(create_date = `Create Date`) %>% 
+  mutate(date1 = ifelse(str_detect(create_date, "/(.)(.)(.)(.)$"), mdy(create_date), ymd(create_date)),
+         date1 = as_date(date1),
+         month = month(date1)) %>% 
+  filter(month %in% c(4, 5)) %>% 
+  mutate(month = as_factor(ifelse(month == 4, "April", "May")))
+
+gender_prop <- year2020 %>% 
+  group_by(`Publication Year`, month) %>% 
+  count(gender) %>% 
+  mutate(prop = round(100*n/sum(n), 2)) %>% 
+  ungroup()
+
+gender_prop %>% 
+  ggplot(aes(`Publication Year`, prop, group = interaction(gender, month),
+             color = gender)) +
+  geom_point(aes(shape = month), size = 2) + 
+  geom_line(aes(linetype = month), show.legend = FALSE) +
+  scale_color_manual(values = c("#FFC857", "#BDD9BF", "#929084")) +
+  theme_minimal() +
+  labs(
+    title = "NEJM, gender proportion in April, May/2020",
+    y = "Proportion (%)%",
+    color = "Gender",
+    shape = "Month") +
+  theme(legend.position = "bottom")
+
+
+count_gender_first <- year2020 %>% 
+  filter(total_authors != 1,
+         author_position == 1) %>% 
+  group_by(`Publication Year`, month) %>% 
+  count(gender) %>% 
+  mutate(prop = round(100*n/sum(n), 2)) %>% 
+  ungroup()
+
+count_gender_first %>% 
+  ggplot(aes(`Publication Year`, prop, group = interaction(gender, month),
+             color = gender)) +
+  geom_point(aes(shape = month), size = 2) + 
+  geom_line(aes(linetype = month), show.legend = FALSE) +
+  scale_color_manual(values = c("#FFC857", "#BDD9BF", "#929084")) +
+  theme_minimal() +
+  labs(
+    title = "NEJM, first author proportion in April, May/2020",
+    y = "Proportion (%)%",
+    color = "Gender",
+    shape = "Month") +
+  theme(legend.position = "bottom")
+
+count_single <- year2020 %>% 
+  filter(total_authors == 1) %>% 
+  group_by(`Publication Year`, month) %>% 
+  count(gender) %>% 
+  mutate(prop = round(100*n/sum(n), 2)) %>% 
+  ungroup()
+
+count_single %>% 
+  ggplot(aes(`Publication Year`, prop, group = interaction(gender, month),
+             color = gender)) +
+  geom_point(aes(shape = month), size = 2) + 
+  geom_line(aes(linetype = month), show.legend = FALSE) +
+  scale_color_manual(values = c("#FFC857", "#BDD9BF", "#929084")) +
+  theme_minimal() +
+  labs(
+    title = "NEJM, single author proportion in April, May/2020",
+    y = "Proportion (%)%",
+    color = "Gender",
+    shape = "Month") +
+  theme(legend.position = "bottom")
+
+
+count_last<- year2020 %>% 
+  filter(total_authors != 1) %>% 
+  group_by(DOI) %>% 
+  filter(author_position == last(author_position)) %>% 
+  ungroup %>%
+  group_by(`Publication Year`, month) %>% 
+  count(gender) %>% 
+  mutate(prop = round(100*n/sum(n), 2)) %>% 
+  ungroup()
+
+count_last %>% 
+  ggplot(aes(`Publication Year`, prop, group = interaction(gender, month),
+             color = gender)) +
+  geom_point(aes(shape = month), size = 2) + 
+  geom_line(aes(linetype = month), show.legend = FALSE) +
+  scale_color_manual(values = c("#FFC857", "#BDD9BF", "#929084")) +
+  theme_minimal() +
+  labs(
+    title = "NEJM, last author proportion in April, May/2020",
+    y = "Proportion (%)%",
+    color = "Gender",
+    shape = "Month") +
+  theme(legend.position = "bottom")
+```
+

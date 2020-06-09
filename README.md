@@ -8,7 +8,7 @@ The following analysis was inspired by the work of Megan Frederickson,
 Data was collected from all publications registered in pubmed, from the
 New England Journal of Medicine, from 1945 to 2020. (Raw data available
 at
-[01\_data](https://github.com/palolili23/pubmed_webscrap/tree/master/01_data))
+[01\_data](https://github.com/palolili23/pubmed_webscrap/tree/master/01_data/nejm))
 
 Since all publications only had first name initials, I used the package
 [rcrossref](https://github.com/ropensci/rcrossref), function `cr_cn`,
@@ -23,7 +23,7 @@ found in
 [`02_r/extract_bib`](https://github.com/palolili23/pubmed_webscrap/blob/master/02_r/extract_bib.R).
 I did it in batches of \~10000 and saved the new dataframes with the
 bibtex data as .Rda, they can be found at
-[01b\_clean\_data](https://github.com/palolili23/pubmed_webscrap/tree/master/01b_clean_data).
+[01b\_clean\_data/nejm](https://github.com/palolili23/pubmed_webscrap/tree/master/01b_clean_data/nejm).
 
 Once all papers had their bibtex information, I followed the next steps
 to clean the data:
@@ -35,7 +35,7 @@ library(tidyverse)
 #### Steps to import the data:
 
 ``` r
-data_dir <- "01b_clean_data"
+data_dir <- "01b_clean_data/nejm"
 
 rda_files <- fs::dir_ls(data_dir, regexp = "\\.Rda$")
 
@@ -523,7 +523,10 @@ data_filtered <- data_filtered %>%
     `Publication Year` = as_factor(`Publication Year`),
     gender = ifelse(is.na(gender), "unknown", gender), 
     gender = ifelse(is.na(gender), "unknown", gender), 
-    gender = str_to_title(gender)) 
+    gender = str_to_title(gender)) %>% 
+  group_by(DOI) %>% 
+  mutate(total_authors = last(author_position)) %>% 
+  ungroup()
 ```
 
 ## Gender proportion over time
@@ -533,7 +536,7 @@ count_gender <- data_filtered %>%
   group_by(`Publication Year`) %>% 
   count(gender) %>% 
   mutate(prop = round(100*n/sum(n), 2)) %>% 
-  ungroup()
+  ungroup() 
 
 count_gender %>%
   ggplot(aes(`Publication Year`, prop, fill = gender)) +
@@ -553,7 +556,8 @@ count_gender %>%
 
 ``` r
 count_gender_first <- data_filtered %>% 
-  filter(author_position == 1) %>% 
+  filter(author_position == 1,
+         total_authors != 1) %>% 
   group_by(`Publication Year`) %>% 
   count(gender) %>% 
   mutate(prop = round(100*n/sum(n), 2)) %>% 
@@ -579,9 +583,6 @@ count_gender_first %>%
 
 ``` r
 count_single <- data_filtered %>% 
-  group_by(DOI) %>% 
-  mutate(total_authors = last(author_position)) %>%
-  ungroup() %>% 
   filter(total_authors == 1) %>% 
   group_by(`Publication Year`) %>% 
   count(gender) %>% 
@@ -609,9 +610,8 @@ count_single %>%
 
 ``` r
 count_last<- data_filtered %>% 
-  group_by(DOI) %>% 
-  filter(author_position == last(author_position)) %>%
-  ungroup() %>% 
+  filter(author_position == last(author_position),
+         total_authors != 1) %>%
   group_by(`Publication Year`) %>% 
   count(gender) %>% 
   mutate(prop = round(100*n/sum(n), 2)) %>% 

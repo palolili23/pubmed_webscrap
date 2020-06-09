@@ -168,3 +168,154 @@ Warning messages:
 48: Failure in resolving '10.1056/NEJMcpc1304163'. See error detail in results.
 49: Failure in resolving '10.1056/NEJMicm1314969'. See error detail in results.
 50: Failure in resolving '10.1056/NEJMct1215532'. See error detail in results.
+
+
+
+
+furrr::future_map(csv_files, extract_bib)
+20096.04 sec elapsed
+7232.59 sec elapsed
+7687.17 sec elapsed
+11.66 sec elapsed
+8499.79 sec elapsed
+6854.74 sec elapsed
+6625.58 sec elapsed
+8527.64 sec elapsed
+$`01_data/lancet2/csv-LancetLond-set (10).csv`
+$`01_data/lancet2/csv-LancetLond-set (10).csv`$tic
+elapsed 
+  91.46 
+
+$`01_data/lancet2/csv-LancetLond-set (10).csv`$toc
+elapsed 
+20187.5 
+
+$`01_data/lancet2/csv-LancetLond-set (10).csv`$msg
+logical(0)
+
+
+$`01_data/lancet2/csv-LancetLond-set (11).csv`
+$`01_data/lancet2/csv-LancetLond-set (11).csv`$tic
+elapsed 
+20187.5 
+
+$`01_data/lancet2/csv-LancetLond-set (11).csv`$toc
+ elapsed 
+27420.09 
+
+$`01_data/lancet2/csv-LancetLond-set (11).csv`$msg
+logical(0)
+
+
+$`01_data/lancet2/csv-LancetLond-set (12).csv`
+$`01_data/lancet2/csv-LancetLond-set (12).csv`$tic
+ elapsed 
+27420.09 
+
+$`01_data/lancet2/csv-LancetLond-set (12).csv`$toc
+ elapsed 
+35107.26 
+
+$`01_data/lancet2/csv-LancetLond-set (12).csv`$msg
+logical(0)
+
+
+$`01_data/lancet2/csv-LancetLond-set (13).csv`
+$`01_data/lancet2/csv-LancetLond-set (13).csv`$tic
+ elapsed 
+35107.26 
+
+$`01_data/lancet2/csv-LancetLond-set (13).csv`$toc
+ elapsed 
+35118.92 
+
+$`01_data/lancet2/csv-LancetLond-set (13).csv`$msg
+logical(0)
+
+
+$`01_data/lancet2/csv-LancetLond-set (14).csv`
+$`01_data/lancet2/csv-LancetLond-set (14).csv`$tic
+ elapsed 
+35118.92 
+
+$`01_data/lancet2/csv-LancetLond-set (14).csv`$toc
+ elapsed 
+43618.71 
+
+$`01_data/lancet2/csv-LancetLond-set (14).csv`$msg
+logical(0)
+
+
+$`01_data/lancet2/csv-LancetLond-set (15).csv`
+$`01_data/lancet2/csv-LancetLond-set (15).csv`$tic
+ elapsed 
+43618.71 
+
+$`01_data/lancet2/csv-LancetLond-set (15).csv`$toc
+ elapsed 
+50473.45 
+
+$`01_data/lancet2/csv-LancetLond-set (15).csv`$msg
+logical(0)
+
+
+$`01_data/lancet2/csv-LancetLond-set (8).csv`
+$`01_data/lancet2/csv-LancetLond-set (8).csv`$tic
+ elapsed 
+50473.45 
+
+$`01_data/lancet2/csv-LancetLond-set (8).csv`$toc
+ elapsed 
+57099.03 
+
+$`01_data/lancet2/csv-LancetLond-set (8).csv`$msg
+logical(0)
+
+
+$`01_data/lancet2/csv-LancetLond-set (9).csv`
+$`01_data/lancet2/csv-LancetLond-set (9).csv`$tic
+ elapsed 
+57099.03 
+
+$`01_data/lancet2/csv-LancetLond-set (9).csv`$toc
+ elapsed 
+65626.67 
+
+$`01_data/lancet2/csv-LancetLond-set (9).csv`$msg
+logical(0)
+
+> warnings()
+Warning messages:
+1: 1 parsing failure.
+ row      col           expected      actual                                          file
+5245 NIHMS ID 1/0/T/F/TRUE/FALSE NIHMS241517 '01_data/lancet2/csv-LancetLond-set (10).csv'
+
+2: Failure in resolving '10.1016/s0140-6736(79)92577-7'. See error detail in results.
+3: 5 parsing failures.
+ row      col           expected      actual                                          file
+4270 PMCID    1/0/T/F/TRUE/FALSE PMC7134685  '01_data/lancet2/csv-LancetLond-set (12).csv'
+4946 PMCID    1/0/T/F/TRUE/FALSE PMC2987629  '01_data/lancet2/csv-LancetLond-set (12).csv'
+4946 NIHMS ID 1/0/T/F/TRUE/FALSE NIHMS246729 '01_data/lancet2/csv-LancetLond-set (12).csv'
+8334 PMCID    1/0/T/F/TRUE/FALSE PMC2982185  '01_data/lancet2/csv-LancetLond-set (12).csv'
+8334 NIHMS ID 1/0/T/F/TRUE/FALSE NIHMS242276 '01_data/lancet2/csv-LancetLond-set (12).csv'
+
+4: 10.1016/s0140-6736(67)90625-3 agency not found - proceeding with 'crossref' ...
+5: 10.1016/s0140-6736(67)92712-2 agency not found - proceeding with 'crossref' ...
+6: 10.1016/s0140-6736(64)90129-1 agency not found - proceeding with 'crossref' ...
+7: 10.1016/s0140-6736(62)92539-4 agency not found - proceeding with 'crossref' ...
+8: 10.1016/s0140-6736(59)92189-0 agency not found - proceeding with 'crossref' ...
+9: 10.1016/s0140-6736(53)91352-x agency not found - proceeding with 'crossref' ...
+10: 10.1016/s0140-6736(51)93201-1 agency not found - proceeding with 'crossref' ...
+11: 10.1016/s0140-6736(51)93318-1 agency not found - proceeding with 'crossref' ...
+12: 10.1016/s0140-6736(47)91924-7 agency not found - proceeding with 'crossref' ...
+13: 6 parsing failures.
+ row      col           expected      actual                                         file
+1347 NIHMS ID 1/0/T/F/TRUE/FALSE NIHMS241525 '01_data/lancet2/csv-LancetLond-set (9).csv'
+2044 NIHMS ID 1/0/T/F/TRUE/FALSE NIHMS245771 '01_data/lancet2/csv-LancetLond-set (9).csv'
+3445 NIHMS ID 1/0/T/F/TRUE/FALSE NIHMS245766 '01_data/lancet2/csv-LancetLond-set (9).csv'
+3919 NIHMS ID 1/0/T/F/TRUE/FALSE NIHMS872010 '01_data/lancet2/csv-LancetLond-set (9).csv'
+4109 NIHMS ID 1/0/T/F/TRUE/FALSE NIHMS242898 '01_data/lancet2/csv-LancetLond-set (9).csv'
+.... ........ .................. ........... ............................................
+See problems(...) for more details.
+
+14: 10.1016/s0140-6736(82)90941-2 agency not found - proceeding with 'crossref' ...
