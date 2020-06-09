@@ -518,7 +518,8 @@ data_filtered <- data_filtered %>%
     gender = str_to_title(gender)) %>% 
   group_by(DOI) %>% 
   mutate(total_authors = last(author_position)) %>% 
-  ungroup()
+  ungroup() %>% 
+  mutate(gender = fct_relevel(gender, c("Male", "Female", "Unknown")))
 ```
 
 ## Gender proportion over time
@@ -539,7 +540,8 @@ count_gender %>%
      y = "Proportion (%)%",
      fill = "Gender") +
   scale_x_discrete(breaks = c("1945", "1960", "1980", "2000", "2020")) +
-    theme(legend.position = "bottom")
+    theme(legend.position = "bottom")+ 
+  theme(panel.grid = element_blank())
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
@@ -566,7 +568,13 @@ count_gender_first %>%
     fill = "Gender") +
     scale_x_discrete(
     breaks=c("1945", "1960", "1980", "2000", "2020")) +
-    theme(legend.position = "bottom")
+    theme(legend.position = "bottom",
+          panel.grid = element_blank()) +
+ annotate(
+    geom = "curve", x = 76, y = 38.1, xend = 78, yend = 33, 
+    curvature = -0.2, arrow = arrow(length = unit(2, "mm")), color = "#7A8C7A", size = 0.7) +
+  annotate(geom = "text", x = 83, y = 30, label = "April = 26%", hjust = "right", color = "#7A8C7A", size = 4) +
+  annotate(geom = "text", x = 83, y = 25, label = "May = 35%", hjust = "right", color = "#7A8C7A")
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
@@ -593,7 +601,8 @@ count_single %>%
     scale_x_discrete(
     breaks=c("1945", "1960", "1980", "2000", "2020")
   ) +
-    theme(legend.position = "bottom")
+    theme(legend.position = "bottom",
+          panel.grid = element_blank())
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
@@ -621,7 +630,8 @@ count_last %>%
     scale_x_discrete(
     breaks=c("1945", "1960", "1980", "2000", "2020")
   ) +
-    theme(legend.position = "bottom")
+    theme(legend.position = "bottom",
+          panel.grid = element_blank())
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
