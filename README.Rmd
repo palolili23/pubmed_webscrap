@@ -177,7 +177,7 @@ data_filtered <- data_filtered %>%
   group_by(DOI) %>% 
   mutate(total_authors = last(author_position)) %>% 
   ungroup() %>% 
-  mutate(gender = fct_relevel(gender, c("Male", "Female", "Unknown")))
+  mutate(gender = fct_relevel(gender, c("Unknown", "Male", "Female")))
 
 ```
 
@@ -195,7 +195,7 @@ count_gender <- data_filtered %>%
 count_gender %>%
   ggplot(aes(`Publication Year`, prop, fill = gender)) +
   geom_col() +
-  scale_fill_manual(values = c("#FFC857", "#BDD9BF", "#929084")) +
+  scale_fill_manual(values = c("#929084", "#BDD9BF", "#FFC857")) +
   theme_minimal() +
   labs(title = "NEJM, author's gender proportion",
      y = "Proportion (%)%",
@@ -219,21 +219,21 @@ count_gender_first <- data_filtered %>%
 count_gender_first %>% 
   ggplot(aes(`Publication Year`, prop, fill = gender)) +
   geom_col() +
-  scale_fill_manual(values = c("#FFC857", "#BDD9BF", "#929084")) +
+  scale_fill_manual(values = c("#929084", "#BDD9BF", "#FFC857")) +
   theme_minimal() +
   labs(
     title = "NEJM, first author's gender proportion",
-    y = "Proportion (%)%",
+    y = "Proportion (%)",
     fill = "Gender") +
     scale_x_discrete(
     breaks=c("1945", "1960", "1980", "2000", "2020")) +
     theme(legend.position = "bottom",
           panel.grid = element_blank()) +
  annotate(
-    geom = "curve", x = 76, y = 38.1, xend = 78, yend = 33, 
-    curvature = -0.2, arrow = arrow(length = unit(2, "mm")), color = "#7A8C7A", size = 0.7) +
-  annotate(geom = "text", x = 83, y = 30, label = "April = 26%", hjust = "right", color = "#7A8C7A", size = 4) +
-  annotate(geom = "text", x = 83, y = 25, label = "May = 35%", hjust = "right", color = "#7A8C7A")
+    geom = "curve", x = 75, y = 22, xend = 76, yend = 29.5, 
+    curvature = 0.0, arrow = arrow(length = unit(2, "mm")), color = "#412234", size = 0.7) +
+  annotate(geom = "text", x = 75, y = 22.5, label = "April = 26%", hjust = "right", color = "#412234", size = 4,
+           fontface="bold") 
 ```
 
 ## Single author´s proportion over time
@@ -249,7 +249,7 @@ count_single <- data_filtered %>%
 count_single %>% 
   ggplot(aes(`Publication Year`, prop, fill = gender)) +
   geom_col() +
-  scale_fill_manual(values = c("#FFC857", "#BDD9BF", "#929084")) +
+  scale_fill_manual(values = c("#929084", "#BDD9BF", "#FFC857")) +
   theme_minimal() +
   labs(
     title = "NEJM, Single author's gender proportion",
@@ -277,7 +277,7 @@ count_last<- data_filtered %>%
 count_last %>% 
   ggplot(aes(`Publication Year`, prop, fill = gender)) +
   geom_col() +
-  scale_fill_manual(values = c("#FFC857", "#BDD9BF", "#929084")) +
+  scale_fill_manual(values = c("#929084", "#BDD9BF", "#FFC857")) +
   theme_minimal() +
   labs(
     title = "NEJM, Last author's gender proportion",
