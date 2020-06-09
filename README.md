@@ -79,41 +79,17 @@ bib
 
 <td style="text-align:left;">
 
-10.1056/NEJM198209023071008
+10.1056/nejm197708112970616
 
 </td>
 
 <td style="text-align:left;">
 
-@article{Cabot\_1982, doi = {10.1056/nejm198209023071008}, url =
-{<https://doi.org/10.1056%2Fnejm198209023071008>}, year = 1982, month =
-{sep}, publisher = {Massachusetts Medical Society}, volume = {307},
-number = {10}, pages = {605–614}, author = {Richard C. Cabot and Robert
-E. Scully and Eugene J. Mark and Betty U. McNeely and L. Christine
-Oliver and Eugene J. Mark}, title = {Case 35-1982}, journal = {New
-England Journal of Medicine} }
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-10.1056/NEJM196507152730306
-
-</td>
-
-<td style="text-align:left;">
-
-@article{Cathcart\_1965, doi = {10.1056/nejm196507152730306}, url =
-{<https://doi.org/10.1056%2Fnejm196507152730306>}, year = 1965, month =
-{jul}, publisher = {Massachusetts Medical Society}, volume = {273},
-number = {3}, pages = {143–146}, author = {Edgar S. Cathcart and Francis
-R. Comerford and Alan S. Cohen}, title = {Immunologic Studies on a
-Protein Extracted from Human Secondary Amyloid}, journal = {New England
-Journal of Medicine} }
+@article{1977, doi = {10.1056/nejm197708112970616}, url =
+{<https://doi.org/10.1056%2Fnejm197708112970616>}, year = 1977, month =
+{aug}, publisher = {Massachusetts Medical Society}, volume = {297},
+number = {6}, pages = {337–337}, title = {Febrile Reactions to {INH}},
+journal = {New England Journal of Medicine} }
 
 </td>
 
@@ -123,24 +99,40 @@ Journal of Medicine} }
 
 <td style="text-align:left;">
 
-10.1056/NEJMoa1314583
+10.1056/NEJM199904083401402
 
 </td>
 
 <td style="text-align:left;">
 
-@article{Gopal\_2014, doi = {10.1056/nejmoa1314583}, url =
-{<https://doi.org/10.1056%2Fnejmoa1314583>}, year = 2014, month = {mar},
-publisher = {Massachusetts Medical Society}, volume = {370}, number =
-{11}, pages = {1008–1018}, author = {Ajay K. Gopal and Brad S. Kahl and
-Sven de Vos and Nina D. Wagner-Johnston and Stephen J. Schuster and
-Wojciech J. Jurczak and Ian W. Flinn and Christopher R. Flowers and
-Peter Martin and Andreas Viardot and Kristie A. Blum and Andre H. Goy
-and Andrew J. Davies and Pier Luigi Zinzani and Martin Dreyling and Dave
-Johnson and Langdon L. Miller and Leanne Holes and Daniel Li and Roger
-D. Dansey and Wayne R. Godfrey and Gilles A. Salles}, title =
-{{PI}3K\(\updelta\) Inhibition by Idelalisib in Patients with Relapsed
-Indolent Lymphoma}, journal = {New England Journal of Medicine} }
+@article{Martin\_1999, doi = {10.1056/nejm199904083401402}, url =
+{<https://doi.org/10.1056%2Fnejm199904083401402>}, year = 1999, month =
+{apr}, publisher = {Massachusetts Medical Society}, volume = {340},
+number = {14}, pages = {1063–1070}, author = {Daniel F. Martin and
+Baruch D. Kuppermann and Richard A. Wolitz and Alan G. Palestine and
+Hong Li and Charles A. Robinson}, title = {Oral Ganciclovir for Patients
+with Cytomegalovirus Retinitis Treated with a Ganciclovir Implant},
+journal = {New England Journal of Medicine} }
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+10.1056/NEJMp020184
+
+</td>
+
+<td style="text-align:left;">
+
+@article{Noguchi\_2003, doi = {10.1056/nejmp020184}, url =
+{<https://doi.org/10.1056%2Fnejmp020184>}, year = 2003, month = {jan},
+publisher = {Massachusetts Medical Society}, volume = {348}, number =
+{3}, pages = {193–194}, author = {Philip Noguchi}, title = {Risks and
+Benefits of Gene Therapy}, journal = {New England Journal of Medicine} }
 
 </td>
 
@@ -363,7 +355,7 @@ gender
 
 <td style="text-align:left;">
 
-Chantha
+Mari
 
 </td>
 
@@ -379,7 +371,7 @@ female
 
 <td style="text-align:left;">
 
-Saundra
+Tanya
 
 </td>
 
@@ -395,7 +387,7 @@ female
 
 <td style="text-align:left;">
 
-Jean
+Maria
 
 </td>
 
@@ -411,7 +403,7 @@ female
 
 <td style="text-align:left;">
 
-Luc
+Gregory
 
 </td>
 
@@ -427,7 +419,7 @@ male
 
 <td style="text-align:left;">
 
-Edwin
+Robert
 
 </td>
 
@@ -443,7 +435,7 @@ male
 
 <td style="text-align:left;">
 
-Charles
+Thaddeus
 
 </td>
 
@@ -459,7 +451,7 @@ male
 
 <td style="text-align:left;">
 
-Joost
+Yilmaz
 
 </td>
 
@@ -475,7 +467,7 @@ NA
 
 <td style="text-align:left;">
 
-Gultekin
+Wim
 
 </td>
 
@@ -491,7 +483,7 @@ NA
 
 <td style="text-align:left;">
 
-Beng
+Kazunori
 
 </td>
 

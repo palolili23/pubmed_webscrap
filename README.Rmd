@@ -17,7 +17,7 @@ mytable <- function(df){
                 full_width = F,
                 font_size = 12)}
 
-set.seed(876)
+set.seed(345)
 ```
 ## Gender proportions in NEJM
 
