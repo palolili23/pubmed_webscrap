@@ -258,8 +258,8 @@ count_single %>%
 
 ```{r}
 count_last<- data_filtered %>% 
-  filter(author_position == last(author_position),
-         total_authors != 1) %>%
+  filter(total_authors != 1,
+         author_position == total_authors) %>%
   group_by(`Publication Year`) %>% 
   count(gender) %>% 
   mutate(prop = round(100*n/sum(n), 2)) %>% 

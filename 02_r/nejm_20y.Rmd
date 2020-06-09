@@ -86,10 +86,8 @@ count_single %>%
 
 
 count_last<- year2020 %>% 
-  filter(total_authors != 1) %>% 
-  group_by(DOI) %>% 
-  filter(author_position == last(author_position)) %>% 
-  ungroup %>%
+  filter(total_authors != 1,
+         author_position == total_authors) %>%
   group_by(`Publication Year`, month) %>% 
   count(gender) %>% 
   mutate(prop = round(100*n/sum(n), 2)) %>% 
