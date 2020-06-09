@@ -3,7 +3,7 @@ library(rcrossref)
 library(tictoc)
 
 ## Import data
-data_dir <- "01_data/bmj"
+data_dir <- "01_data/lancet1"
 
 csv_files <- fs::dir_ls(data_dir)
 
@@ -54,17 +54,17 @@ extract_bib <-
     dt <- dt %>% 
       distinct(PMID, .keep_all = TRUE)
     
-    dt <- dt %>% filter(!is.na(DOI)) %>% 
-      sample_n(2)
+    dt <- dt %>% filter(!is.na(DOI))
     
     dt <- dt %>% 
       mutate(bib = cr_cn(DOI))
 
     file_name <- as.character(data)
-    file_name <- str_replace(file_name, "01_data/bmj", "01b_clean_data")
+    file_name <- str_replace(file_name, "01_data/lancet1", "01b_clean_data")
     file_name <- str_replace(file_name, ".csv$", ".Rda")
     rio::export(dt, file_name)
     toc()
       }
 
 map(csv_files, extract_bib)
+
