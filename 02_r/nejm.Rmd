@@ -20,13 +20,13 @@ year2020 <- rio::import(here::here("01b_clean_data", "data_filtered_nejm.Rda")) 
   filter(month %in% c(4, 5)) %>% 
   mutate(month = as_factor(ifelse(month == 4, "April", "May")))
 
-gender_prop <- year2020 %>% 
+gender_prop_2020 <- year2020 %>% 
   group_by(`Publication Year`, month) %>% 
   count(gender) %>% 
   mutate(prop = round(100*n/sum(n), 2)) %>% 
   ungroup()
 
-gender_prop %>% 
+gender_prop_2020 %>% 
   ggplot(aes(`Publication Year`, prop, group = interaction(gender, month),
              color = gender)) +
   geom_point(aes(shape = month), size = 2) + 
@@ -41,7 +41,7 @@ gender_prop %>%
   theme(legend.position = "bottom")
 
 
-count_gender_first <- year2020 %>% 
+count_gender_first_2020 <- year2020 %>% 
   filter(total_authors != 1,
          author_position == 1) %>% 
   group_by(`Publication Year`, month) %>% 
@@ -49,7 +49,7 @@ count_gender_first <- year2020 %>%
   mutate(prop = round(100*n/sum(n), 2)) %>% 
   ungroup()
 
-count_gender_first %>% 
+count_gender_first_2020 %>% 
   ggplot(aes(`Publication Year`, prop, group = interaction(gender, month),
              color = gender)) +
   geom_point(aes(shape = month), size = 2) + 
@@ -63,14 +63,14 @@ count_gender_first %>%
     shape = "Month") +
   theme(legend.position = "bottom")
 
-count_single <- year2020 %>% 
+count_single_2020 <- year2020 %>% 
   filter(total_authors == 1) %>% 
   group_by(`Publication Year`, month) %>% 
   count(gender) %>% 
   mutate(prop = round(100*n/sum(n), 2)) %>% 
   ungroup()
 
-count_single %>% 
+count_single_2020 %>% 
   ggplot(aes(`Publication Year`, prop, group = interaction(gender, month),
              color = gender)) +
   geom_point(aes(shape = month), size = 2) + 
@@ -85,7 +85,7 @@ count_single %>%
   theme(legend.position = "bottom")
 
 
-count_last<- year2020 %>% 
+count_last_2020<- year2020 %>% 
   filter(total_authors != 1,
          author_position == total_authors) %>%
   group_by(`Publication Year`, month) %>% 
@@ -93,7 +93,7 @@ count_last<- year2020 %>%
   mutate(prop = round(100*n/sum(n), 2)) %>% 
   ungroup()
 
-count_last %>% 
+count_last_2020 %>% 
   ggplot(aes(`Publication Year`, prop, group = interaction(gender, month),
              color = gender)) +
   geom_point(aes(shape = month), size = 2) + 

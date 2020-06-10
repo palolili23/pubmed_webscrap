@@ -541,7 +541,12 @@ count_gender %>%
      fill = "Gender") +
   scale_x_discrete(breaks = c("1945", "1960", "1980", "2000", "2020")) +
     theme(legend.position = "bottom")+ 
-  theme(panel.grid = element_blank())
+  theme(panel.grid = element_blank()) +
+   annotate(
+    geom = "curve", x = 75, y = 22, xend = 76, yend = 29.5, 
+    curvature = 0.0, arrow = arrow(length = unit(2, "mm")), color = "#412234", size = 0.7) +
+  annotate(geom = "text", x = 75, y = 22.5, label = "April = 31%", hjust = "right", color = "#412234", size = 4,
+           fontface="bold") 
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
@@ -602,7 +607,12 @@ count_single %>%
     breaks=c("1945", "1960", "1980", "2000", "2020")
   ) +
     theme(legend.position = "bottom",
-          panel.grid = element_blank())
+          panel.grid = element_blank()) +
+   annotate(
+    geom = "curve", x = 75, y = 35, xend = 76, yend = 42.5, 
+    curvature = 0.0, arrow = arrow(length = unit(2, "mm")), color = "#412234", size = 0.7) +
+  annotate(geom = "text", x = 75, y = 32.5, label = "April = 46%", hjust = "right", color = "#412234", size = 4,
+           fontface="bold") 
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
@@ -631,7 +641,12 @@ count_last %>%
     breaks=c("1945", "1960", "1980", "2000", "2020")
   ) +
     theme(legend.position = "bottom",
-          panel.grid = element_blank())
+          panel.grid = element_blank())+
+   annotate(
+    geom = "curve", x = 75, y = 17, xend = 76, yend = 24.5, 
+    curvature = 0.0, arrow = arrow(length = unit(2, "mm")), color = "#412234", size = 0.7) +
+  annotate(geom = "text", x = 75, y = 17.5, label = "April = 34%", hjust = "right", color = "#412234", size = 4,
+           fontface="bold") 
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
