@@ -1,5 +1,5 @@
 ---
-title: "NEJM April-May gender rates over the last 20 years"
+title: "NEJM April-September gender rates over the last 20 years"
 output: html_document
 fig_width: 15
 fig_height: 8 
@@ -17,9 +17,15 @@ year2020 <- rio::import(here::here("01b_clean_data", "data_filtered_nejm.Rda")) 
   mutate(date1 = ifelse(str_detect(create_date, "/(.)(.)(.)(.)$"), mdy(create_date), ymd(create_date)),
          date1 = as_date(date1),
          month = month(date1)) %>% 
-  filter(month %in% c(4, 5)) %>% 
-  mutate(month = as_factor(ifelse(month == 4, "April", "May")))
-
+  filter(month %in% c(4, 5, 6, 7, 8, 9)) %>% 
+  mutate(month = as_factor(case_when(
+    month == 4 ~ "April",
+    month == 5 ~ "May",
+    month == 6 ~ "June",
+    month == 7 ~ "July",
+    month == 8 ~ "August",
+    month == 9 ~ "September")))
+    
 gender_prop_2020 <- year2020 %>% 
   group_by(`Publication Year`, month) %>% 
   count(gender) %>% 
@@ -34,13 +40,21 @@ gender_prop_2020 %>%
   scale_color_manual(values = c("#FFC857", "#BDD9BF", "#929084")) +
   theme_minimal() +
   labs(
-    title = "NEJM, gender proportion in April, May/2020",
+    title = "NEJM, gender proportion in April - September/2020",
     y = "Proportion (%)%",
     color = "Gender",
     shape = "Month") +
   theme(legend.position = "bottom")
+```
+
+```{r}
+gender_prop_2020 %>% 
+  filter(`Publication Year` == 2020) %>% 
+  filter(gender == "Female")
+```
 
 
+```{r, message=FALSE, warning=FALSE}
 count_gender_first_2020 <- year2020 %>% 
   filter(total_authors != 1,
          author_position == 1) %>% 
@@ -57,12 +71,18 @@ count_gender_first_2020 %>%
   scale_color_manual(values = c("#FFC857", "#BDD9BF", "#929084")) +
   theme_minimal() +
   labs(
-    title = "NEJM, first author proportion in April, May/2020",
+    title = "NEJM, first author proportion in April, September/2020",
     y = "Proportion (%)%",
     color = "Gender",
     shape = "Month") +
   theme(legend.position = "bottom")
 
+count_gender_first_2020 %>% 
+  filter(`Publication Year` == 2020) %>% 
+  filter(gender == "Female")
+```
+
+```{r}
 count_single_2020 <- year2020 %>% 
   filter(total_authors == 1) %>% 
   group_by(`Publication Year`, month) %>% 
@@ -78,14 +98,20 @@ count_single_2020 %>%
   scale_color_manual(values = c("#FFC857", "#BDD9BF", "#929084")) +
   theme_minimal() +
   labs(
-    title = "NEJM, single author proportion in April, May/2020",
+    title = "NEJM, single author proportion in April, September/2020",
     y = "Proportion (%)%",
     color = "Gender",
     shape = "Month") +
   theme(legend.position = "bottom")
 
+count_single_2020 %>% 
+  filter(`Publication Year` == 2020) %>% 
+  filter(gender == "Female")
 
-count_last_2020<- year2020 %>% 
+```
+
+```{r}
+count_last_2020 <- year2020 %>% 
   filter(total_authors != 1,
          author_position == total_authors) %>%
   group_by(`Publication Year`, month) %>% 
@@ -101,10 +127,14 @@ count_last_2020 %>%
   scale_color_manual(values = c("#FFC857", "#BDD9BF", "#929084")) +
   theme_minimal() +
   labs(
-    title = "NEJM, last author proportion in April, May/2020",
+    title = "NEJM, last author proportion in April, September/2020",
     y = "Proportion (%)%",
     color = "Gender",
     shape = "Month") +
   theme(legend.position = "bottom")
+
+count_last_2020 %>% 
+  filter(`Publication Year` == 2020) %>% 
+  filter(gender == "Female")
 ```
 

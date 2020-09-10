@@ -79,40 +79,17 @@ bib
 
 <td style="text-align:left;">
 
-10.1056/nejm197708112970616
+10.1056/nejm197811162992019
 
 </td>
 
 <td style="text-align:left;">
 
-@article{1977, doi = {10.1056/nejm197708112970616}, url =
-{<https://doi.org/10.1056%2Fnejm197708112970616>}, year = 1977, month =
-{aug}, publisher = {Massachusetts Medical Society}, volume = {297},
-number = {6}, pages = {337–337}, title = {Febrile Reactions to {INH}},
-journal = {New England Journal of Medicine} }
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-10.1056/NEJM199904083401402
-
-</td>
-
-<td style="text-align:left;">
-
-@article{Martin\_1999, doi = {10.1056/nejm199904083401402}, url =
-{<https://doi.org/10.1056%2Fnejm199904083401402>}, year = 1999, month =
-{apr}, publisher = {Massachusetts Medical Society}, volume = {340},
-number = {14}, pages = {1063–1070}, author = {Daniel F. Martin and
-Baruch D. Kuppermann and Richard A. Wolitz and Alan G. Palestine and
-Hong Li and Charles A. Robinson}, title = {Oral Ganciclovir for Patients
-with Cytomegalovirus Retinitis Treated with a Ganciclovir Implant},
-journal = {New England Journal of Medicine} }
+@article{1978, doi = {10.1056/nejm197811162992019}, url =
+{<https://doi.org/10.1056%2Fnejm197811162992019>}, year = 1978, month =
+{nov}, publisher = {Massachusetts Medical Society}, volume = {299},
+number = {20}, pages = {1137–1137}, title = {Blood Pressure in Coffee
+Drinkers}, journal = {New England Journal of Medicine} }
 
 </td>
 
@@ -122,17 +99,40 @@ journal = {New England Journal of Medicine} }
 
 <td style="text-align:left;">
 
-10.1056/NEJMp020184
+10.1056/NEJMc080368
 
 </td>
 
 <td style="text-align:left;">
 
-@article{Noguchi\_2003, doi = {10.1056/nejmp020184}, url =
-{<https://doi.org/10.1056%2Fnejmp020184>}, year = 2003, month = {jan},
-publisher = {Massachusetts Medical Society}, volume = {348}, number =
-{3}, pages = {193–194}, author = {Philip Noguchi}, title = {Risks and
-Benefits of Gene Therapy}, journal = {New England Journal of Medicine} }
+@article{2008, doi = {10.1056/nejmc080368}, url =
+{<https://doi.org/10.1056%2Fnejmc080368>}, year = 2008, month = {jun},
+publisher = {Massachusetts Medical Society}, volume = {358}, number =
+{24}, pages = {2641–2644}, title = {Drug-Eluting Stents
+vs. Coronary-Artery Bypass Grafting}, journal = {New England Journal of
+Medicine} }
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+10.1056/NEJM199603283341316
+
+</td>
+
+<td style="text-align:left;">
+
+@article{Melero\_Pita\_1996, doi = {10.1056/nejm199603283341316}, url =
+{<https://doi.org/10.1056%2Fnejm199603283341316>}, year = 1996, month =
+{mar}, publisher = {Massachusetts Medical Society}, volume = {334},
+number = {13}, pages = {866–867}, author = {A. Melero-Pita and F.
+Alonso-Pardo and J.L. Bardaj{'{}}-Mayor and J. Higueras}, title =
+{Corrected Transposition of the Great Arteries}, journal = {New England
+Journal of Medicine} }
 
 </td>
 
@@ -323,7 +323,7 @@ data_filtered <- data_filtered %>%
 data_filtered %>% 
   select(first_name, gender) %>% 
   group_by(gender) %>% 
-  sample_n(3) %>% 
+  sample_n(2) %>% 
   mytable()
 ```
 
@@ -355,7 +355,7 @@ gender
 
 <td style="text-align:left;">
 
-Mari
+Aubrey
 
 </td>
 
@@ -371,7 +371,7 @@ female
 
 <td style="text-align:left;">
 
-Tanya
+Betty
 
 </td>
 
@@ -387,23 +387,7 @@ female
 
 <td style="text-align:left;">
 
-Maria
-
-</td>
-
-<td style="text-align:left;">
-
-female
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-Gregory
+Fergus
 
 </td>
 
@@ -419,7 +403,7 @@ male
 
 <td style="text-align:left;">
 
-Robert
+Philip
 
 </td>
 
@@ -435,23 +419,7 @@ male
 
 <td style="text-align:left;">
 
-Thaddeus
-
-</td>
-
-<td style="text-align:left;">
-
-male
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-Yilmaz
+Gatana
 
 </td>
 
@@ -467,23 +435,7 @@ NA
 
 <td style="text-align:left;">
 
-Wim
-
-</td>
-
-<td style="text-align:left;">
-
-NA
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-Kazunori
+Bhabita
 
 </td>
 
@@ -543,9 +495,9 @@ count_gender %>%
     theme(legend.position = "bottom")+ 
   theme(panel.grid = element_blank()) +
    annotate(
-    geom = "curve", x = 75, y = 22, xend = 76, yend = 29.5, 
+    geom = "curve", x = 75, y = 22, xend = 76, yend = 32, 
     curvature = 0.0, arrow = arrow(length = unit(2, "mm")), color = "#412234", size = 0.7) +
-  annotate(geom = "text", x = 75, y = 22.5, label = "April = 31%", hjust = "right", color = "#412234", size = 4,
+  annotate(geom = "text", x = 75, y = 22.5, label = "August = 35%", hjust = "right", color = "#412234", size = 4,
            fontface="bold") 
 ```
 
@@ -576,9 +528,9 @@ count_gender_first %>%
     theme(legend.position = "bottom",
           panel.grid = element_blank()) +
  annotate(
-    geom = "curve", x = 75, y = 22, xend = 76, yend = 29.5, 
+    geom = "curve", x = 75, y = 22, xend = 76, yend = 29, 
     curvature = 0.0, arrow = arrow(length = unit(2, "mm")), color = "#412234", size = 0.7) +
-  annotate(geom = "text", x = 75, y = 22.5, label = "April = 26%", hjust = "right", color = "#412234", size = 4,
+  annotate(geom = "text", x = 75, y = 22.5, label = "August = 30%", hjust = "right", color = "#412234", size = 4,
            fontface="bold") 
 ```
 
@@ -609,9 +561,9 @@ count_single %>%
     theme(legend.position = "bottom",
           panel.grid = element_blank()) +
    annotate(
-    geom = "curve", x = 75, y = 35, xend = 76, yend = 42.5, 
+    geom = "curve", x = 75, y = 35, xend = 76, yend = 46, 
     curvature = 0.0, arrow = arrow(length = unit(2, "mm")), color = "#412234", size = 0.7) +
-  annotate(geom = "text", x = 75, y = 32.5, label = "April = 46%", hjust = "right", color = "#412234", size = 4,
+  annotate(geom = "text", x = 75, y = 32.5, label = "August = 57%", hjust = "right", color = "#412234", size = 4,
            fontface="bold") 
 ```
 
@@ -645,7 +597,7 @@ count_last %>%
    annotate(
     geom = "curve", x = 75, y = 17, xend = 76, yend = 24.5, 
     curvature = 0.0, arrow = arrow(length = unit(2, "mm")), color = "#412234", size = 0.7) +
-  annotate(geom = "text", x = 75, y = 17.5, label = "April = 34%", hjust = "right", color = "#412234", size = 4,
+  annotate(geom = "text", x = 75, y = 17.5, label = "August = 34%", hjust = "right", color = "#412234", size = 4,
            fontface="bold") 
 ```
 

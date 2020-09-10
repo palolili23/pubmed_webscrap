@@ -17,7 +17,6 @@ mytable <- function(df){
                 full_width = F,
                 font_size = 12)}
 
-set.seed(345)
 ```
 ## Gender proportions in NEJM
 
@@ -124,7 +123,7 @@ data_filtered <- data_filtered %>%
 data_filtered %>% 
   select(first_name, gender) %>% 
   group_by(gender) %>% 
-  sample_n(3) %>% 
+  sample_n(2) %>% 
   mytable()
 ```
 
@@ -204,9 +203,9 @@ count_gender %>%
     theme(legend.position = "bottom")+ 
   theme(panel.grid = element_blank()) +
    annotate(
-    geom = "curve", x = 75, y = 22, xend = 76, yend = 29.5, 
+    geom = "curve", x = 75, y = 22, xend = 76, yend = 32, 
     curvature = 0.0, arrow = arrow(length = unit(2, "mm")), color = "#412234", size = 0.7) +
-  annotate(geom = "text", x = 75, y = 22.5, label = "April = 31%", hjust = "right", color = "#412234", size = 4,
+  annotate(geom = "text", x = 75, y = 22.5, label = "August = 35%", hjust = "right", color = "#412234", size = 4,
            fontface="bold") 
 ```
 
@@ -235,9 +234,9 @@ count_gender_first %>%
     theme(legend.position = "bottom",
           panel.grid = element_blank()) +
  annotate(
-    geom = "curve", x = 75, y = 22, xend = 76, yend = 29.5, 
+    geom = "curve", x = 75, y = 22, xend = 76, yend = 29, 
     curvature = 0.0, arrow = arrow(length = unit(2, "mm")), color = "#412234", size = 0.7) +
-  annotate(geom = "text", x = 75, y = 22.5, label = "April = 26%", hjust = "right", color = "#412234", size = 4,
+  annotate(geom = "text", x = 75, y = 22.5, label = "August = 30%", hjust = "right", color = "#412234", size = 4,
            fontface="bold") 
 ```
 
@@ -266,9 +265,9 @@ count_single %>%
     theme(legend.position = "bottom",
           panel.grid = element_blank()) +
    annotate(
-    geom = "curve", x = 75, y = 35, xend = 76, yend = 42.5, 
+    geom = "curve", x = 75, y = 35, xend = 76, yend = 46, 
     curvature = 0.0, arrow = arrow(length = unit(2, "mm")), color = "#412234", size = 0.7) +
-  annotate(geom = "text", x = 75, y = 32.5, label = "April = 46%", hjust = "right", color = "#412234", size = 4,
+  annotate(geom = "text", x = 75, y = 32.5, label = "August = 57%", hjust = "right", color = "#412234", size = 4,
            fontface="bold") 
 
 ```
@@ -301,7 +300,7 @@ count_last %>%
    annotate(
     geom = "curve", x = 75, y = 17, xend = 76, yend = 24.5, 
     curvature = 0.0, arrow = arrow(length = unit(2, "mm")), color = "#412234", size = 0.7) +
-  annotate(geom = "text", x = 75, y = 17.5, label = "April = 34%", hjust = "right", color = "#412234", size = 4,
+  annotate(geom = "text", x = 75, y = 17.5, label = "August = 34%", hjust = "right", color = "#412234", size = 4,
            fontface="bold") 
 ```
 
